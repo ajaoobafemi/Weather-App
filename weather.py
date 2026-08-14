@@ -2,6 +2,7 @@ import sys
 import requests
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton, QLineEdit, QVBoxLayout
 from PyQt5.QtCore import Qt
+import winsound
 
 class WeatherApp(QWidget):
   def __init__(self):
@@ -56,6 +57,7 @@ class WeatherApp(QWidget):
     self.get_weather_button.clicked.connect(self.get_weather)
     
   def get_weather(self):
+    winsound.Beep(1000, 200) 
     api_key = "8737740ffce0b79baefca5f76b32515d"
     city = self.city_input.text()
     url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}"
