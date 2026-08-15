@@ -3,6 +3,8 @@ import requests
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton, QLineEdit, QVBoxLayout
 from PyQt5.QtCore import Qt
 import winsound
+from dotenv import load_dotenv
+import os
 
 class WeatherApp(QWidget):
   def __init__(self):
@@ -58,7 +60,8 @@ class WeatherApp(QWidget):
     
   def get_weather(self):
     winsound.Beep(1000, 200) 
-    api_key = "8737740ffce0b79baefca5f76b32515d"
+    load_dotenv()
+    api_key = os.getenv("OPENWEATHER_API_KEY")
     city = self.city_input.text()
     url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}"
 
